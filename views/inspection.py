@@ -1,5 +1,5 @@
 ﻿from logic.shopfloor_rules import STATIONS, calculate_inspection_load
-from logic.inspection_graph import build_graph_for_route
+from logic.inspection_graph import build_inspection_graph
 
 from ui.inspection_cytoscape import render_inspection_cytoscape
 
