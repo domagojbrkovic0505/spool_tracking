@@ -1,0 +1,80 @@
+﻿import streamlit as st
+
+
+def station_box(name, dashed=False):
+    border_style = "dashed" if dashed else "solid"
+    st.markdown(
+        f"""
+        <div style="
+            border: 2px {border_style} #333;
+            border-radius: 6px;
+            padding: 10px;
+            text-align: center;
+            background-color: #f2f2f2;
+            font-weight: 600;
+            color: #000000;
+            margin-bottom: 10px;
+        ">
+            {name}
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+
+def station_image(name: str, image_path: str):
+    st.image(image_path, use_container_width=True)
+    st.markdown(
+        f"<div style='text-align:center; font-weight:600; color:white;'>{name}</div>",
+        unsafe_allow_html=True
+    )
+
+
+def draw_shopfloor():
+    st.subheader("🏭 Shopfloor layout")
+
+    main_cols = st.columns(10)
+
+    # 1. Work Preparation – SLIKA
+    with main_cols[0]:
+        station_image(
+            "Workbook Preparation",
+            "assets/work_preparation.png"
+        )
+
+    # 2. PPS
+    with main_cols[1]:
+        station_box("PPS")
+
+    # 3. Fitting Material Preparation
+    with main_cols[2]:
+        station_box("Fitting Material Preparation")
+
+    # 4. Pipe Material Preparation
+    with main_cols[3]:
+        station_box("Pipe Material Preparation")
+
+    # 5. Cutting
+    with main_cols[4]:
+        station_box("Cutting")
+
+    # 6. Cold Bending
+    with main_cols[5]:
+        station_box("Cold Bending", dashed=True)
+
+    # 7. Mechanical Fabrication
+    with main_cols[6]:
+        station_box("Mechanical Fabrication")
+
+    # 8. Fitup / Welding – paralelno
+    with main_cols[7]:
+        station_box("Fitup", dashed=True)
+        station_box("Welding", dashed=True)
+
+    # 9. NDT
+    with main_cols[8]:
+        station_box("NDT")
+
+    # 10. Technical Control
+    with main_cols[9]:
+        station_box("Technical Control")

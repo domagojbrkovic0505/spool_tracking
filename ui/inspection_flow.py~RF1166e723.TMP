@@ -1,0 +1,31 @@
+import streamlit as st
+from pathlib import Path
+
+
+def render_inspection_flow(inspection_load: dict):
+    base_dir = Path(__file__).resolve().parent.parent
+    svg_path = base_dir / "assets" / "inspection_main_flow.svg"
+
+    if not svg_path.exists():
+        st.warning(f"Inspection flow diagram not found: {svg_path}")
+        return
+
+    with open(svg_path, "r", encoding="utf-8") as f:
+        svg = f.read()
+
+    st.markdown(
+        f"""
+        <div style="
+            background:#0e1117;
+            padding:16px;
+            border-radius:12px;
+        ">
+            {svg}
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+    # DEBUG – MUST BE VISIBLE
+    st.markdown("### ?? DEBUG – inspection_load")
+    st.write(inspection_load)
