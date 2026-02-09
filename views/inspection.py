@@ -11,7 +11,7 @@ def render_inspection(spools_df):
     st.success("Inspection view loaded")
     inspection_load = calculate_inspection_load(spools_df)
 
-    graph = build_graph_for_route(
+    graph = build_inspection_graph(
         stations=STATIONS,
         inspection_load=inspection_load,
     )
