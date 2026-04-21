@@ -99,40 +99,13 @@ def get_week_options(df):
     return options
 
 
-def render_data_source_sidebar():
-    st.sidebar.header("Data files")
-    st.sidebar.caption("Upload files for web use. Leave empty to use local files on this PC.")
-
-    spools_file = st.sidebar.file_uploader(
-        "Operations1 spools export",
-        type=["xlsx"],
-        key="spools_upload",
-    )
-    tasks_file = st.sidebar.file_uploader(
-        "Operations1 tasks export",
-        type=["xlsx"],
-        key="tasks_upload",
-    )
-    piping_manager_file = st.sidebar.file_uploader(
-        "Piping Manager export",
-        type=["xlsx"],
-        key="pm_upload",
-    )
-
-    return spools_file, tasks_file, piping_manager_file
-
-
+# Upload mode is temporarily disabled. Keep this local-file helper so it can be
+# re-enabled later without changing the rest of the app.
 def get_data_sources():
-    spools_file, tasks_file, piping_manager_file = render_data_source_sidebar()
-
     return {
-        "spools": spools_file if spools_file is not None else "spools.xlsx",
-        "tasks": tasks_file if tasks_file is not None else "operations1_tasks.xlsx",
-        "piping_manager": (
-            piping_manager_file
-            if piping_manager_file is not None
-            else "Piping manager-SCM_Weekly_Reporting.xlsx"
-        ),
+        "spools": "spools.xlsx",
+        "tasks": "operations1_tasks.xlsx",
+        "piping_manager": "Piping manager-SCM_Weekly_Reporting.xlsx",
     }
 
 def render_duplicate_metric(title, value, detail):
@@ -588,6 +561,7 @@ with plant_tabs[1]:
 
     with dept_tabs[1]:
         render_inspection(inspection_df)
+
 
 
 
